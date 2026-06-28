@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEWAKITA</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:linear-gradient(135deg,#1E3A8A,#2563EB);display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff}
+.container{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);padding:30px;border-radius:18px;width:90%;max-width:850px;text-align:center}
+.hidden{display:none}
+input,button{width:100%;padding:10px;margin:8px 0;border:none;border-radius:8px}
+button{background:#F59E0B;color:#fff;cursor:pointer;font-weight:bold}
+button:hover{background:#d97706}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{border:1px solid #fff;padding:8px}
+</style>
+</head>
+<body>
+
+<div class="container" id="home">
+<h1>SEWAKITA</h1>
+<p>Platform Digital Penyewaan yang Mudah, Cepat, dan Terpercaya.</p>
+
+<input type="text" id="userId" placeholder="Masukkan ID">
+<input type="password" id="password" placeholder="Masukkan Password">
+
+<button onclick="login()">LOGIN</button>
+</div>
+
+<div class="container hidden" id="menu">
+<h2>Menu Utama</h2>
+<p>Total Pendapatan : Rp <span id="sumPendapatan">0</span></p>
+<p>Total Pengeluaran : Rp <span id="sumPengeluaran">0</span></p>
+<h3>Saldo : Rp <span id="saldo">0</span></h3>
+
+<button onclick="show('pendapatan')">Pendapatan</button>
+<button onclick="show('pengeluaran')">Pengeluaran</button>
+<button onclick="logout()">Logout</button>
+</div>
+
+<div class="container hidden" id="pendapatan">
+<h2>Pendapatan</h2>
+<input type="date" id="tanggalPendapatan">
+<input id="barang" placeholder="Keterangan">
+<input type="number" id="nominal" placeholder="Nominal">
+<button onclick="simpanPendapatan()">Simpan</button>
+<button onclick="back('pendapatan')">Kembali</button>
+<h3>Total : Rp <span id="totalPendapatan">0</span></h3>
+<table>
+<thead><tr><th>No</th><th>Tanggal</th><th>Keterangan</th><th>Nominal</th></tr></thead>
+<tbody id="tbP"></tbody>
+</table>
+</div>
+
+<div class="container hidden" id="pengeluaran">
+<h2>Pengeluaran</h2>
+<input type="date" id="tanggalPengeluaran">
+<input id="barangKeluar" placeholder="Keterangan">
+<input type="number" id="nominalKeluar" placeholder="Nominal">
+<button onclick="simpanPengeluaran()">Simpan</button>
+<button onclick="back('pengeluaran')">Kembali</button>
+<h3>Total : Rp <span id="totalPengeluaran">0</span></h3>
+<table>
+<thead><tr><th>No</th><th>Tanggal</th><th>Keterangan</th><th>Nominal</th></tr></thead>
+<tbody id="tbK"></tbody>
+</table>
+</div>
+
+<script>
+const USER_ID="admin";
+const PASSWORD="sewakita1";
+
+const fmt=n=>n.toLocaleString("id-ID");
+let p=JSON.parse(localStorage.getItem("dataPendapatan")||"[]");
+let k=JSON.parse(localStorage.getItem("dataPengeluaran")||"[]");
+
+const today=new Date().toISOString().split("T")[0];
+tanggalPendapatan.value=today;
+tanggalPengeluaran.value=today;
+
+function login(){
+ let id=userId.value.trim();
+ let pass=password.value;
+
+ if(id===""||pass===""){
+   alert("ID dan Password harus diisi!");
+   return;
+ }
+
+ const validLogin =
+     (id===USER_ID && pass===PASSWORD) ||
+     (id==="Deni" && pass==="deni123");
+
+ if(validLogin){
+   home.classList.add("hidden");
+   menu.classList.remove("hidden");
+   render();
+ }else{
+   alert("ID atau Password salah!");
+   password.value="";
+   password.focus();
+ }
+}
+
+function logout(){
+ menu.classList.add("hidden");
+ home.classList.remove("hidden");
+ userId.value="";
+ password.value="";
+}
+
+function show(id){
+ menu.classList.add("hidden");
+ document.getElementById(id).classList.remove("hidden");
+}
+
+function back(id){
+ document.getElementById(id).classList.add("hidden");
+ menu.classList.remove("hidden");
+ render();
+}
+
+function simpanPendapatan(){
+ const o={
+  tanggal:tanggalPendapatan.value,
+  barang:barang.value.trim(),
+  nominal:Number(nominal.value)
+ };
+ if(!o.tanggal||!o.barang||o.nominal<=0){
+   alert("Lengkapi data!");
+   return;
+ }
+ p.push(o);
+ localStorage.setItem("dataPendapatan",JSON.stringify(p));
+ barang.value="";
+ nominal.value="";
+ tanggalPendapatan.value=today;
+ render();
+}
+
+function simpanPengeluaran(){
+ const o={
+  tanggal:tanggalPengeluaran.value,
+  barang:barangKeluar.value.trim(),
+  nominal:Number(nominalKeluar.value)
+ };
+ if(!o.tanggal||!o.barang||o.nominal<=0){
+   alert("Lengkapi data!");
+   return;
+ }
+ k.push(o);
+ localStorage.setItem("dataPengeluaran",JSON.stringify(k));
+ barangKeluar.value="";
+ nominalKeluar.value="";
+ tanggalPengeluaran.value=today;
+ render();
+}
+
+function render(){
+ let tp=0,tk=0;
+
+ tbP.innerHTML="";
+ p.forEach((d,i)=>{
+   tp+=d.nominal;
+   let r=tbP.insertRow();
+   r.insertCell().textContent=i+1;
+   r.insertCell().textContent=d.tanggal;
+   r.insertCell().textContent=d.barang;
+   r.insertCell().textContent="Rp "+fmt(d.nominal);
+ });
+
+ tbK.innerHTML="";
+ k.forEach((d,i)=>{
+   tk+=d.nominal;
+   let r=tbK.insertRow();
+   r.insertCell().textContent=i+1;
+   r.insertCell().textContent=d.tanggal;
+   r.insertCell().textContent=d.barang;
+   r.insertCell().textContent="Rp "+fmt(d.nominal);
+ });
+
+ totalPendapatan.textContent=fmt(tp);
+ totalPengeluaran.textContent=fmt(tk);
+ sumPendapatan.textContent=fmt(tp);
+ sumPengeluaran.textContent=fmt(tk);
+ saldo.textContent=fmt(tp-tk);
+}
+render();
+</script>
+
+</body>
+</html>
