@@ -2,192 +2,952 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEWAKITA</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEWAKITA | Dashboard Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:linear-gradient(135deg,#1E3A8A,#2563EB);display:flex;justify-content:center;align-items:center;min-height:100vh;color:#fff}
-.container{background:rgba(255,255,255,.12);backdrop-filter:blur(10px);padding:30px;border-radius:18px;width:90%;max-width:850px;text-align:center}
-.hidden{display:none}
-input,button{width:100%;padding:10px;margin:8px 0;border:none;border-radius:8px}
-button{background:#F59E0B;color:#fff;cursor:pointer;font-weight:bold}
-button:hover{background:#d97706}
-table{width:100%;border-collapse:collapse;margin-top:15px}
-th,td{border:1px solid #fff;padding:8px}
+/* ================= DESAIN PREMIUM (DASHBOARD) ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0f172a;
+    background-image: 
+        radial-gradient(at 0% 0%, #1e3a8a 0px, transparent 50%), 
+        radial-gradient(at 100% 100%, #312e81 0px, transparent 50%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e2e8f0;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(30, 41, 59, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 40px 35px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 1100px; 
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+}
+
+h1.brand {
+    text-align: center;
+    font-size: 2.8em;
+    font-weight: 700;
+    background: linear-gradient(to right, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+h2 {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    color: #f8fafc;
+}
+
+.label {
+    font-size: 0.9em;
+    color: #94a3b8;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    display: block;
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(15, 23, 42, 0.6);
+    color: #fff;
+    font-size: 1em;
+    transition: 0.3s;
+    outline: none;
+}
+
+input[type="file"] {
+    padding: 10px 15px;
+    font-size: 0.85em;
+    cursor: pointer;
+}
+
+input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
+    background: rgba(15, 23, 42, 0.9);
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.btn-primary { background: linear-gradient(135deg, #f59e0b, #d97706); }
+.btn-primary:hover { box-shadow: 0 10px 20px -10px rgba(245, 158, 11, 0.6); }
+
+.btn-menu { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+.btn-menu:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+
+.btn-histori { background: linear-gradient(135deg, #10b981, #059669); }
+.btn-histori:hover { box-shadow: 0 10px 20px -10px rgba(16, 185, 129, 0.6); }
+
+.btn-danger { background: linear-gradient(135deg, #ef4444, #dc2626); margin-top: 25px; }
+.btn-danger:hover { box-shadow: 0 10px 20px -10px rgba(239, 68, 68, 0.6); }
+
+.btn-back { background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); margin-top: 20px; }
+.btn-back:hover { background: rgba(255, 255, 255, 0.08); }
+
+.btn-excel { background: linear-gradient(135deg, #16a34a, #15803d); margin-bottom: 15px; }
+.btn-excel:hover { box-shadow: 0 10px 20px -10px rgba(22, 163, 74, 0.6); }
+
+.btn-action { width: auto; padding: 6px 14px; font-size: 0.85em; border-radius: 8px; margin: 2px; font-weight: 500; }
+.btn-edit { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+.btn-edit:hover { background: rgba(59, 130, 246, 0.3); color: #fff; }
+.btn-hapus { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+.btn-hapus:hover { background: rgba(239, 68, 68, 0.3); color: #fff; }
+
+/* Custom Checkbox Wrapper agar tidak mengikuti style global input */
+.checkbox-group { display: flex; flex-direction: column; gap: 12px; margin: 15px 0 25px 5px; }
+.checkbox-item { display: flex; align-items: center; cursor: pointer; font-size: 0.95em; color: #cbd5e1; }
+.checkbox-item input[type="checkbox"] { width: auto !important; height: auto !important; margin-bottom: 0 !important; margin-right: 12px !important; padding: 0 !important; cursor: pointer; }
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto; 
+    background: rgba(15, 23, 42, 0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 20px;
+}
+table { width: 100%; border-collapse: collapse; white-space: nowrap; }
+th, td { padding: 16px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.05); vertical-align: top; }
+th { background: rgba(255, 255, 255, 0.02); font-weight: 600; color: #94a3b8; text-transform: uppercase; font-size: 0.85em; letter-spacing: 0.5px; }
+tr:hover td { background: rgba(255, 255, 255, 0.03); }
+tr:last-child td { border-bottom: none; }
+td.kolom-kecil { font-size: 0.9em; color: #cbd5e1; white-space: nowrap; } 
+
+.card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.card { background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01)); border: 1px solid rgba(255, 255, 255, 0.08); padding: 25px; border-radius: 16px; text-align: center; transition: 0.3s; }
+.card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.15); }
+.card p { font-size: 0.9em; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.card h3 { font-size: 1.4em; font-weight: 600; color: #f8fafc; }
+.card.saldo-total { grid-column: 1 / -1; background: linear-gradient(145deg, rgba(56, 189, 248, 0.1), rgba(56, 189, 248, 0.02)); border-color: rgba(56, 189, 248, 0.3); padding: 35px 20px;}
+.card.saldo-total p { color: #7dd3fc; }
+.card.saldo-total h2 { font-size: 2.5em; color: #38bdf8; margin: 0; }
+
+.hidden { display: none !important; }
+
+@media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .container { padding: 30px 15px; }
+}
+
+/* ================= CSS INVOICE CETAK PROFESIONAL ================= */
+#printArea { display: none; }
+
+@media print {
+    @page { size: A4; margin: 15mm; }
+    body { background: #fff !important; color: #334155 !important; display: block; padding: 0; margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .container { display: none !important; } 
+    #printArea { display: block !important; font-family: 'Poppins', sans-serif; max-width: 100%; box-sizing: border-box; }
+    .inv-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #1e3a8a; padding-bottom: 20px; margin-bottom: 30px; }
+    .inv-company { display: flex; align-items: center; gap: 15px; }
+    .inv-logo { width: 80px; height: 80px; object-fit: contain; border-radius: 50%; display: none; border: 2px solid #e2e8f0; }
+    .inv-company h1 { font-size: 2.2em; color: #1e3a8a; margin: 0; letter-spacing: 1px; font-weight: 700; }
+    .inv-company p { color: #64748b; margin: 0; font-size: 0.9em; }
+    .inv-title { text-align: right; }
+    .inv-title h2 { font-size: 2.5em; color: #94a3b8; margin: 0 0 5px 0; text-transform: uppercase; font-weight: 300; letter-spacing: 2px; }
+    .inv-title p { margin: 0; font-size: 0.95em; color: #475569; }
+    .inv-details { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 30px; }
+    .inv-details h3 { font-size: 0.85em; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 5px; }
+    .client-name { font-size: 1.2em; font-weight: 600; color: #0f172a; margin-bottom: 4px !important; }
+    .inv-details p { margin: 3px 0; font-size: 0.95em; }
+    .inv-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+    .inv-table th { background-color: #1e3a8a !important; color: #ffffff !important; padding: 12px 15px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px; border: none; }
+    .inv-table td { padding: 15px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+    .item-name { font-weight: 600; color: #0f172a; font-size: 1.05em; }
+    .item-desc { font-size: 0.85em; color: #64748b; margin-top: 4px; font-style: italic; }
+    .inv-summary { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px; }
+    .inv-notes { width: 50%; }
+    .inv-notes h4 { font-size: 0.9em; color: #0f172a; margin-bottom: 5px; }
+    .inv-notes p { font-size: 0.8em; color: #64748b; margin: 2px 0; line-height: 1.4; }
+    .inv-totals-box { width: 40%; background: #f8fafc !important; border-radius: 8px; padding: 20px; border: 1px solid #e2e8f0; }
+    .total-row.grand-total { display: flex; justify-content: space-between; font-size: 1.3em; font-weight: 700; color: #1e3a8a; border-top: 2px solid #cbd5e1; padding-top: 10px; margin-top: 5px; }
+    .inv-footer { margin-top: 50px; text-align: right; }
+    .signature p { margin: 0; font-size: 0.95em; color: #0f172a; }
+}
 </style>
 </head>
 <body>
 
 <div class="container" id="home">
-<h1>SEWAKITA</h1>
-<p>Platform Digital Penyewaan yang Mudah, Cepat, dan Terpercaya.</p>
-
-<input type="text" id="userId" placeholder="Masukkan ID">
-<input type="password" id="password" placeholder="Masukkan Password">
-
-<button onclick="login()">LOGIN</button>
+<h1 class="brand">SEWAKITA</h1>
+<span class="label">ID Pengguna</span>
+<input id="userId" placeholder="admin atau Deni">
+<span class="label">Kata Sandi</span>
+<input id="password" type="password" placeholder="Masukkan password">
+<button type="button" class="btn-primary" style="margin-top: 25px;" onclick="prosesLogin()">Masuk Akun</button>
 </div>
 
 <div class="container hidden" id="menu">
-<h2>Menu Utama</h2>
-<p>Total Pendapatan : Rp <span id="sumPendapatan">0</span></p>
-<p>Total Pengeluaran : Rp <span id="sumPengeluaran">0</span></p>
-<h3>Saldo : Rp <span id="saldo">0</span></h3>
+<h2>Dashboard Utama</h2>
+<button type="button" class="btn-menu hidden" id="btnMenuPendapatan" onclick="showPage('pendapatan')">💰 Pendapatan</button>
+<button type="button" class="btn-menu hidden" id="btnMenuPengeluaran" onclick="showPage('pengeluaran')">💸 Pengeluaran</button>
+<button type="button" class="btn-menu hidden" id="btnMenuSaldo" onclick="showPage('saldoPage')">📊 Laporan Saldo</button>
+<button type="button" class="btn-menu hidden" id="btnMenuInvoice" onclick="showPage('invoicePage')">📝 Buat Invoice</button>
+<button type="button" class="btn-histori hidden" id="btnMenuUserMgmt" onclick="showPage('userManagementPage')" style="margin-top:15px; background: linear-gradient(135deg, #6366f1, #4f46e5);">⚙️ Kelola Pengguna (Khusus Deni)</button>
+<button type="button" class="btn-danger" onclick="prosesLogout()">🚪 Keluar Aplikasi</button>
 
-<button onclick="show('pendapatan')">Pendapatan</button>
-<button onclick="show('pengeluaran')">Pengeluaran</button>
-<button onclick="logout()">Logout</button>
+<hr style="border-color: rgba(255, 255, 255, 0.1); margin: 30px 0 20px 0;">
+<h3 style="font-size: 1.1em; color: #f8fafc; margin-bottom: 15px; text-align: center;">⚙️ Pengaturan Logo Invoice</h3>
+<div style="text-align: center;">
+    <img id="logoPreview" src="" alt="Preview Logo" style="width: 80px; height: 80px; object-fit: contain; background: #fff; border-radius: 50%; display: none; margin: 0 auto 10px auto; border: 2px solid #38bdf8;">
+</div>
+<span class="label" style="text-align: center; display: block;">Upload gambar untuk kop Invoice</span>
+<input type="file" id="uploadLogo" accept="image/*">
 </div>
 
 <div class="container hidden" id="pendapatan">
-<h2>Pendapatan</h2>
+<h2>Input Pendapatan</h2>
+<span class="label">Tanggal Transaksi</span>
 <input type="date" id="tanggalPendapatan">
-<input id="barang" placeholder="Keterangan">
-<input type="number" id="nominal" placeholder="Nominal">
-<button onclick="simpanPendapatan()">Simpan</button>
-<button onclick="back('pendapatan')">Kembali</button>
-<h3>Total : Rp <span id="totalPendapatan">0</span></h3>
-<table>
-<thead><tr><th>No</th><th>Tanggal</th><th>Keterangan</th><th>Nominal</th></tr></thead>
-<tbody id="tbP"></tbody>
-</table>
+<span class="label">Keterangan</span>
+<input id="barang" placeholder="Contoh: Sewa Kamera Sony A7">
+<span class="label">Nominal Pendapatan (Rp)</span>
+<input type="number" id="nominal" placeholder="0">
+<button type="button" class="btn-primary" onclick="simpanPendapatan()" id="btnSimpanP">Simpan Data</button>
+<button type="button" class="btn-histori" onclick="showPage('historyP')">Lihat Riwayat Pendapatan</button>
+<button type="button" class="btn-back" onclick="showPage('menu')">Kembali</button>
+</div>
+
+<div class="container hidden" id="historyP">
+<h2>Riwayat Pendapatan</h2>
+<span class="label">Filter Berdasarkan Bulan:</span>
+<input type="month" id="filterHistoriP" onchange="renderTable()">
+<button type="button" class="btn-excel" onclick="exportExcel('p')">📊 Download Excel (CSV)</button>
+
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>Barang / Keterangan</th>
+                <th>Nama Penyewa</th>
+                <th>No HP</th>
+                <th>Alamat</th>
+                <th>Ambil</th>
+                <th>Kembali</th>
+                <th>Nominal</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="tbP"></tbody>
+    </table>
+</div>
+<button type="button" class="btn-back" onclick="showPage('pendapatan')">Kembali ke Input</button>
 </div>
 
 <div class="container hidden" id="pengeluaran">
-<h2>Pengeluaran</h2>
+<h2>Input Pengeluaran</h2>
+<span class="label">Tanggal Transaksi</span>
 <input type="date" id="tanggalPengeluaran">
-<input id="barangKeluar" placeholder="Keterangan">
-<input type="number" id="nominalKeluar" placeholder="Nominal">
-<button onclick="simpanPengeluaran()">Simpan</button>
-<button onclick="back('pengeluaran')">Kembali</button>
-<h3>Total : Rp <span id="totalPengeluaran">0</span></h3>
-<table>
-<thead><tr><th>No</th><th>Tanggal</th><th>Keterangan</th><th>Nominal</th></tr></thead>
-<tbody id="tbK"></tbody>
-</table>
+<span class="label">Keterangan</span>
+<input id="barangKeluar" placeholder="Contoh: Beli Baterai Tambahan">
+<span class="label">Nominal Pengeluaran (Rp)</span>
+<input type="number" id="nominalKeluar" placeholder="0">
+<button type="button" class="btn-primary" onclick="simpanPengeluaran()" id="btnSimpanK">Simpan Data</button>
+<button type="button" class="btn-histori" onclick="showPage('historyK')">Lihat Riwayat Pengeluaran</button>
+<button type="button" class="btn-back" onclick="showPage('menu')">Kembali</button>
+</div>
+
+<div class="container hidden" id="historyK">
+<h2>Riwayat Pengeluaran</h2>
+<span class="label">Filter Berdasarkan Bulan:</span>
+<input type="month" id="filterHistoriK" onchange="renderTable()">
+<button type="button" class="btn-excel" onclick="exportExcel('k')">📊 Download Excel (CSV)</button>
+
+<div class="table-wrapper">
+    <table>
+        <thead><tr><th>No</th><th>Tanggal</th><th>Keterangan</th><th>Nominal</th><th>Aksi</th></tr></thead>
+        <tbody id="tbK"></tbody>
+    </table>
+</div>
+<button type="button" class="btn-back" onclick="showPage('pengeluaran')">Kembali ke Input</button>
+</div>
+
+<div class="container hidden" id="saldoPage">
+<h2>Laporan Keuangan</h2>
+<span class="label">Pilih Bulan Pembukuan:</span>
+<input type="month" id="filterBulan" onchange="renderSaldo()">
+<div class="card-grid">
+    <div class="card">
+        <p>Total Pendapatan</p>
+        <h3>Rp <span id="sumPendapatan">0</span></h3>
+    </div>
+    <div class="card">
+        <p>Total Pengeluaran</p>
+        <h3>Rp <span id="sumPengeluaran">0</span></h3>
+    </div>
+    <div class="card saldo-total">
+        <p>Saldo Bersih Tersedia</p>
+        <h2>Rp <span id="saldo">0</span></h2>
+    </div>
+</div>
+<button type="button" class="btn-back" onclick="showPage('menu')">Kembali ke Dashboard</button>
+</div>
+
+<div class="container hidden" id="invoicePage">
+<h2>Buat Invoice Sewa</h2>
+<span class="label">Nama Penyewa / Pelanggan</span>
+<input type="text" id="invPelanggan" placeholder="Contoh: Budi Santoso">
+<span class="label">No Telfon / WhatsApp</span>
+<input type="text" id="invTelfon" placeholder="Contoh: 08123456789">
+<span class="label">Alamat Penyewa</span>
+<input type="text" id="invAlamat" placeholder="Contoh: Jl. Merdeka No. 10">
+<span class="label">Tanggal Transaksi</span>
+<input type="date" id="invTanggal">
+<span class="label">Waktu Pengambilan</span>
+<input type="datetime-local" id="invAmbil">
+<span class="label">Waktu Pengembalian</span>
+<input type="datetime-local" id="invKembali">
+<span class="label">Nama Barang / Keterangan</span>
+<input type="text" id="invBarang" placeholder="Contoh: Kamera Sony A7">
+<span class="label">Keterangan Tambahan Barang</span>
+<input type="text" id="invKet" placeholder="Contoh: Termasuk 2 Baterai & Tas">
+<span class="label">Harga Sewa per Hari (Rp)</span>
+<input type="number" id="invHarga" placeholder="0" oninput="hitungInvoice()">
+<span class="label">Lama Sewa (Hari)</span>
+<input type="number" id="invDurasi" placeholder="1" value="1" oninput="hitungInvoice()">
+<span class="label">Total Keseluruhan (Otomatis)</span>
+<input type="text" id="invTotal" placeholder="Rp 0" readonly style="background: rgba(255, 255, 255, 0.05); cursor: not-allowed;">
+<button type="button" class="btn-primary" onclick="cetakInvoice()">🖨️ Cetak / Simpan PDF Invoice</button>
+<button type="button" class="btn-back" onclick="showPage('menu')">Kembali ke Dashboard</button>
+</div>
+
+<div class="container hidden" id="userManagementPage">
+<h2>Buat Pengguna Baru</h2>
+<span class="label">ID Pengguna Baru</span>
+<input id="newUserId" placeholder="Contoh: staf_admin">
+<span class="label">Kata Sandi Baru</span>
+<input id="newUserPassword" type="password" placeholder="Masukkan password">
+
+<span class="label">Pilih Hak Akses Menu Pengguna Baru:</span>
+<div class="checkbox-group">
+    <label class="checkbox-item"><input type="checkbox" id="accPendapatan" value="pendapatan"> 💰 Akses Menu Pendapatan</label>
+    <label class="checkbox-item"><input type="checkbox" id="accPengeluaran" value="pengeluaran"> 💸 Akses Menu Pengeluaran</label>
+    <label class="checkbox-item"><input type="checkbox" id="accSaldo" value="saldoPage"> 📊 Akses Menu Laporan Saldo</label>
+    <label class="checkbox-item"><input type="checkbox" id="accInvoice" value="invoicePage"> 📝 Akses Menu Buat Invoice</label>
+</div>
+
+<button type="button" class="btn-primary" onclick="tambahPengguna()">➕ Tambahkan Pengguna</button>
+
+<hr style="border-color: rgba(255, 255, 255, 0.1); margin: 35px 0 25px 0;">
+
+<h2>Daftar Akun Pengguna Active</h2>
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>ID Pengguna</th>
+                <th>Hak Akses Menu</th>
+                <th>Aksi Kelola</th>
+            </tr>
+        </thead>
+        <tbody id="tbUsers"></tbody>
+    </table>
+</div>
+<button type="button" class="btn-back" onclick="showPage('menu')">Kembali ke Dashboard</button>
+</div>
+
+<div id="printArea">
+    <div class="inv-header">
+        <div class="inv-company">
+            <img src="" alt="Logo Usaha" class="inv-logo" id="printLogo">
+            <div>
+                <h1>SEWAKITA</h1>
+                <p>Jasa Penyewaan Alat Profesional</p>
+            </div>
+        </div>
+        <div class="inv-title">
+            <h2>INVOICE</h2>
+            <p><strong>Tanggal:</strong> <span id="pTanggal"></span></p>
+        </div>
+    </div>
+    
+    <div class="inv-details">
+        <div class="inv-bill-to">
+            <h3>Ditagihkan Kepada:</h3>
+            <p class="client-name" id="pPelanggan"></p>
+            <p id="pTelfon"></p>
+            <p id="pAlamat"></p>
+        </div>
+        <div class="inv-rental-info">
+            <h3>Informasi Sewa:</h3>
+            <p><strong>Waktu Ambil:</strong> <span id="pAmbil"></span></p>
+            <p><strong>Waktu Kembali:</strong> <span id="pKembali"></span></p>
+        </div>
+    </div>
+    
+    <table class="inv-table">
+        <thead>
+            <tr>
+                <th style="width: 45%;">Deskripsi Barang</th>
+                <th style="text-align: right;">Harga / Hari</th>
+                <th style="text-align: center;">Durasi</th>
+                <th style="text-align: right;">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="item-name" id="pBarang"></div>
+                    <div class="item-desc" id="pKeterangan"></div>
+                </td>
+                <td style="text-align: right;" id="pHarga"></td>
+                <td style="text-align: center;" id="pDurasi"></td>
+                <td style="text-align: right; font-weight: 600; color: #0f172a;" id="pTotal"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="inv-summary">
+        <div class="inv-notes">
+            <h4>Syarat & Ketentuan:</h4>
+            <p>1. Barang yang disewa menjadi tanggung jawab penyewa sepenuhnya.</p>
+            <p>2. Mohon kembalikan barang tepat waktu sesuai kesepakatan pada invoice ini.</p>
+            <p>3. Segala kerusakan atau kehilangan selama masa sewa akan dibebankan kepada penyewa.</p>
+        </div>
+        <div class="inv-totals-box">
+            <div class="total-row grand-total">
+                <span>TOTAL TAGIHAN</span>
+                <span>Rp <span id="pGrandTotal">0</span></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="inv-footer">
+        <div class="signature">
+            <p>Hormat Kami,</p>
+            <br><br><br><br>
+            <p style="font-weight: 600;">SEWAKITA</p>
+        </div>
+    </div>
 </div>
 
 <script>
-const USER_ID="admin";
-const PASSWORD="sewakita1";
+function fmt(n) { return Number(n).toLocaleString("id-ID"); }
 
-const fmt=n=>n.toLocaleString("id-ID");
-let p=JSON.parse(localStorage.getItem("dataPendapatan")||"[]");
-let k=JSON.parse(localStorage.getItem("dataPengeluaran")||"[]");
-
-const today=new Date().toISOString().split("T")[0];
-tanggalPendapatan.value=today;
-tanggalPengeluaran.value=today;
-
-function login(){
- let id=userId.value.trim();
- let pass=password.value;
-
- if(id===""||pass===""){
-   alert("ID dan Password harus diisi!");
-   return;
- }
-
- const validLogin =
-     (id===USER_ID && pass===PASSWORD) ||
-     (id==="Deni" && pass==="deni123");
-
- if(validLogin){
-   home.classList.add("hidden");
-   menu.classList.remove("hidden");
-   render();
- }else{
-   alert("ID atau Password salah!");
-   password.value="";
-   password.focus();
- }
+function escapeHTML(str) {
+    if (str === undefined || str === null || str === "") return "-";
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
-function logout(){
- menu.classList.add("hidden");
- home.classList.remove("hidden");
- userId.value="";
- password.value="";
+var p = [];
+var k = [];
+var users = []; // Menyimpan master data login akun
+var currentUser = ""; 
+var currentUserAccess = []; // Menyimpan hak akses user saat aktif login
+var editIndexP = -1;
+var editIndexK = -1;
+
+// Sistem Inisialisasi Akun Bawaan (Default Account)
+var defaultUsers = [
+    { id: "admin", pass: "sewakita1", access: ["pendapatan", "pengeluaran", "invoicePage"] },
+    { id: "Deni", pass: "deni123", access: ["pendapatan", "pengeluaran", "saldoPage", "invoicePage", "userManagementPage"] }
+];
+
+function initData() {
+    try {
+        var dataP = localStorage.getItem("dataPendapatan");
+        var dataK = localStorage.getItem("dataPengeluaran");
+        if(dataP) p = JSON.parse(dataP);
+        if(dataK) k = JSON.parse(dataK);
+        
+        // Membaca data Akun Pengguna dari Penyimpanan
+        var dataUsers = localStorage.getItem("dataUsers");
+        if(dataUsers) {
+            users = JSON.parse(dataUsers);
+        } else {
+            users = defaultUsers;
+            localStorage.setItem("dataUsers", JSON.stringify(users));
+        }
+    } catch(err) {
+        console.error("Gagal baca data", err);
+    }
+}
+initData();
+
+window.onload = function() {
+    var today = new Date().toISOString().slice(0, 10);
+    var month = today.slice(0, 7);
+    document.getElementById("tanggalPendapatan").value = today;
+    document.getElementById("tanggalPengeluaran").value = today;
+    document.getElementById("filterBulan").value = month;
+    document.getElementById("invTanggal").value = today; 
+
+    var savedLogo = localStorage.getItem('logoUsaha');
+    if (savedLogo) {
+        document.getElementById('logoPreview').src = savedLogo;
+        document.getElementById('logoPreview').style.display = 'block';
+        document.getElementById('printLogo').src = savedLogo;
+        document.getElementById('printLogo').style.display = 'block';
+    }
+};
+
+document.getElementById('uploadLogo').addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var base64Img = event.target.result;
+            localStorage.setItem('logoUsaha', base64Img);
+            document.getElementById('logoPreview').src = base64Img;
+            document.getElementById('logoPreview').style.display = 'block';
+            document.getElementById('printLogo').src = base64Img;
+            document.getElementById('printLogo').style.display = 'block';
+            alert("Logo berhasil disimpan!");
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// ================= PERBAIKAN & PENINGKATAN SISTEM LOGIN DYNAMIC =================
+function prosesLogin() {
+    var idInput = document.getElementById("userId").value.trim();
+    var passInput = document.getElementById("password").value.trim();
+    
+    if(idInput === "" || passInput === "") return alert("Jangan dikosongkan! Ketik ID dan Password.");
+
+    // Pencarian akun terdaftar di sistem basis data lokal
+    var foundUser = users.find(u => u.id.toLowerCase() === idInput.toLowerCase() && u.pass === passInput);
+
+    if (foundUser) {
+        currentUser = foundUser.id; 
+        currentUserAccess = foundUser.access;
+        
+        // Reset sembunyikan semua menu utama dahulu
+        document.getElementById("btnMenuPendapatan").classList.add("hidden");
+        document.getElementById("btnMenuPengeluaran").classList.add("hidden");
+        document.getElementById("btnMenuSaldo").classList.add("hidden");
+        document.getElementById("btnMenuInvoice").classList.add("hidden");
+        document.getElementById("btnMenuUserMgmt").classList.add("hidden");
+        
+        // Membuka tombol menu secara bersyarat berdasarkan array "access" milik akun terkait
+        if (currentUserAccess.includes("pendapatan")) document.getElementById("btnMenuPendapatan").classList.remove("hidden");
+        if (currentUserAccess.includes("pengeluaran")) document.getElementById("btnMenuPengeluaran").classList.remove("hidden");
+        if (currentUserAccess.includes("saldoPage")) document.getElementById("btnMenuSaldo").classList.remove("hidden");
+        if (currentUserAccess.includes("invoicePage")) document.getElementById("btnMenuInvoice").classList.remove("hidden");
+        if (currentUserAccess.includes("userManagementPage")) document.getElementById("btnMenuUserMgmt").classList.remove("hidden");
+        
+        showPage('menu');
+    } else {
+        alert("ID atau Password salah! Cek huruf besar/kecilnya.");
+    }
 }
 
-function show(id){
- menu.classList.add("hidden");
- document.getElementById(id).classList.remove("hidden");
+function prosesLogout() {
+    currentUser = ""; 
+    currentUserAccess = [];
+    hideAll();
+    document.getElementById('home').classList.remove("hidden");
+    document.getElementById("userId").value = "";
+    document.getElementById("password").value = "";
 }
 
-function back(id){
- document.getElementById(id).classList.add("hidden");
- menu.classList.remove("hidden");
- render();
+function hideAll() {
+    var pages = ['home', 'menu', 'pendapatan', 'historyP', 'pengeluaran', 'historyK', 'saldoPage', 'invoicePage', 'userManagementPage'];
+    for(var i = 0; i < pages.length; i++) {
+        document.getElementById(pages[i]).classList.add("hidden");
+    }
 }
 
-function simpanPendapatan(){
- const o={
-  tanggal:tanggalPendapatan.value,
-  barang:barang.value.trim(),
-  nominal:Number(nominal.value)
- };
- if(!o.tanggal||!o.barang||o.nominal<=0){
-   alert("Lengkapi data!");
-   return;
- }
- p.push(o);
- localStorage.setItem("dataPendapatan",JSON.stringify(p));
- barang.value="";
- nominal.value="";
- tanggalPendapatan.value=today;
- render();
+function showPage(id) {
+    if (id === 'saldoPage' && !currentUserAccess.includes('saldoPage')) return alert("Akses ditolak! Menu ini di luar hak akses Anda.");
+    if (id === 'userManagementPage' && currentUser.toLowerCase() !== 'deni') return alert("Akses ditolak! Hanya Bos (Deni) yang boleh mengelola user.");
+    hideAll();
+    document.getElementById(id).classList.remove("hidden");
+    if (id === 'historyP' || id === 'historyK') renderTable();
+    if (id === 'saldoPage') renderSaldo();
+    if (id === 'userManagementPage') renderUsersTable();
 }
 
-function simpanPengeluaran(){
- const o={
-  tanggal:tanggalPengeluaran.value,
-  barang:barangKeluar.value.trim(),
-  nominal:Number(nominalKeluar.value)
- };
- if(!o.tanggal||!o.barang||o.nominal<=0){
-   alert("Lengkapi data!");
-   return;
- }
- k.push(o);
- localStorage.setItem("dataPengeluaran",JSON.stringify(k));
- barangKeluar.value="";
- nominalKeluar.value="";
- tanggalPengeluaran.value=today;
- render();
+// ================= NEW FUNCTION: PENGELOLAAN MANAJEMEN USER =================
+function renderUsersTable() {
+    var tbUsers = document.getElementById("tbUsers");
+    if(!tbUsers) return;
+    tbUsers.innerHTML = "";
+    var no = 1;
+    
+    users.forEach(function(u, index) {
+        // Konversi penamaan sistem ke format visual yang rapi
+        var listAkses = u.access.map(a => {
+            if(a === 'pendapatan') return '💰 Pendapatan';
+            if(a === 'pengeluaran') return '💸 Pengeluaran';
+            if(a === 'saldoPage') return '📊 Saldo';
+            if(a === 'invoicePage') return '📝 Invoice';
+            if(a === 'userManagementPage') return '⚙️ Administrator';
+            return a;
+        }).join(", ");
+        
+        // Proteksi agar ID utama Deni tidak bisa dihapus sendiri oleh ketidaksengajaan
+        var tombolHapus = (u.id.toLowerCase() === 'deni') ? '-' : '<button class="btn-action btn-hapus" onclick="hapusUser('+index+')">Hapus ID</button>';
+        var tombolGantiPass = '<button class="btn-action btn-edit" onclick="gantiPasswordUser('+index+')">Ganti Pass</button>';
+        
+        tbUsers.innerHTML += '<tr>' +
+            '<td>' + (no++) + '</td>' +
+            '<td><strong>' + escapeHTML(u.id) + '</strong></td>' +
+            '<td class="kolom-kecil" style="white-space: normal; max-width: 350px;">' + escapeHTML(listAkses) + '</td>' +
+            '<td>' + tombolGantiPass + ' ' + tombolHapus + '</td>' +
+            '</tr>';
+    });
 }
 
-function render(){
- let tp=0,tk=0;
-
- tbP.innerHTML="";
- p.forEach((d,i)=>{
-   tp+=d.nominal;
-   let r=tbP.insertRow();
-   r.insertCell().textContent=i+1;
-   r.insertCell().textContent=d.tanggal;
-   r.insertCell().textContent=d.barang;
-   r.insertCell().textContent="Rp "+fmt(d.nominal);
- });
-
- tbK.innerHTML="";
- k.forEach((d,i)=>{
-   tk+=d.nominal;
-   let r=tbK.insertRow();
-   r.insertCell().textContent=i+1;
-   r.insertCell().textContent=d.tanggal;
-   r.insertCell().textContent=d.barang;
-   r.insertCell().textContent="Rp "+fmt(d.nominal);
- });
-
- totalPendapatan.textContent=fmt(tp);
- totalPengeluaran.textContent=fmt(tk);
- sumPendapatan.textContent=fmt(tp);
- sumPengeluaran.textContent=fmt(tk);
- saldo.textContent=fmt(tp-tk);
+function tambahPengguna() {
+    var newId = document.getElementById("newUserId").value.trim();
+    var newPass = document.getElementById("newUserPassword").value.trim();
+    
+    if(!newId || !newPass) return alert("ID dan Password pengguna baru tidak boleh kosong!");
+    
+    // Cegah terjadinya ID duplikat / ganda
+    var isDuplicate = users.some(u => u.id.toLowerCase() === newId.toLowerCase());
+    if(isDuplicate) return alert("Gagal! ID Pengguna tersebut sudah digunakan.");
+    
+    // Membuat array pembatasan modul menu terpilih
+    var allowedAccess = [];
+    if(document.getElementById("accPendapatan").checked) allowedAccess.push("pendapatan");
+    if(document.getElementById("accPengeluaran").checked) allowedAccess.push("pengeluaran");
+    if(document.getElementById("accSaldo").checked) allowedAccess.push("saldoPage");
+    if(document.getElementById("accInvoice").checked) allowedAccess.push("invoicePage");
+    
+    if(allowedAccess.length === 0) return alert("Pilih minimal satu hak akses menu untuk pengguna ini!");
+    
+    // Daftarkan ke array lokal database
+    users.push({
+        id: newId,
+        pass: newPass,
+        access: allowedAccess
+    });
+    
+    localStorage.setItem("dataUsers", JSON.stringify(users));
+    alert("Pengguna baru '" + newId + "' berhasil didaftarkan!");
+    
+    // Mengosongkan form input kembali
+    document.getElementById("newUserId").value = "";
+    document.getElementById("newUserPassword").value = "";
+    document.getElementById("accPendapatan").checked = false;
+    document.getElementById("accPengeluaran").checked = false;
+    document.getElementById("accSaldo").checked = false;
+    document.getElementById("accInvoice").checked = false;
+    
+    renderUsersTable();
 }
-render();
+
+function hapusUser(index) {
+    var target = users[index];
+    if(target.id.toLowerCase() === 'deni') return alert("ID Root (Deni) tidak diizinkan untuk dihapus!");
+    
+    if(!confirm("Apakah Anda yakin ingin menghapus permanen ID: '" + target.id + "'?")) return;
+    
+    users.splice(index, 1);
+    localStorage.setItem("dataUsers", JSON.stringify(users));
+    alert("Pengguna berhasil dihapus dari sistem.");
+    renderUsersTable();
+}
+
+function gantiPasswordUser(index) {
+    var target = users[index];
+    var passBaru = prompt("Masukkan Kata Sandi Baru untuk Akun '" + target.id + "':");
+    
+    if(passBaru === null) return; 
+    passBaru = passBaru.trim();
+    if(!passBaru) return alert("Password baru tidak boleh kosong atau spasi!");
+    
+    users[index].pass = passBaru;
+    localStorage.setItem("dataUsers", JSON.stringify(users));
+    alert("Kata sandi akun '" + target.id + "' sukses diperbarui!");
+    renderUsersTable();
+}
+
+// ================= LOGIKA TRANSAKSI BAWAAN (AMAN DARI XSS & INJECTION) =================
+function simpanPendapatan() {
+    var tgl = document.getElementById("tanggalPendapatan").value;
+    var brg = document.getElementById("barang").value.trim();
+    var nom = +document.getElementById("nominal").value;
+
+    if (!tgl || !brg || nom <= 0) return alert("Isi form dengan lengkap dan benar!");
+
+    if (editIndexP > -1) {
+        p[editIndexP].tanggal = tgl;
+        p[editIndexP].barang = brg;
+        p[editIndexP].nominal = nom;
+        editIndexP = -1;
+        document.getElementById('btnSimpanP').textContent = "Simpan Data";
+        alert("Data berhasil diupdate!");
+    } else {
+        p.push({ tanggal: tgl, barang: brg, nominal: nom });
+        alert("Data berhasil disimpan!");
+    }
+    localStorage.setItem("dataPendapatan", JSON.stringify(p));
+    document.getElementById("barang").value = "";
+    document.getElementById("nominal").value = "";
+}
+
+function simpanPengeluaran() {
+    var tgl = document.getElementById("tanggalPengeluaran").value;
+    var brg = document.getElementById("barangKeluar").value.trim();
+    var nom = +document.getElementById("nominalKeluar").value;
+
+    if (!tgl || !brg || nom <= 0) return alert("Isi form dengan lengkap dan benar!");
+    var obj = { tanggal: tgl, barang: brg, nominal: nom };
+
+    if (editIndexK > -1) {
+        k[editIndexK] = obj;
+        editIndexK = -1;
+        document.getElementById('btnSimpanK').textContent = "Update Data";
+        alert("Data berhasil diupdate!");
+    } else {
+        k.push(obj);
+        alert("Data berhasil disimpan!");
+    }
+    localStorage.setItem("dataPengeluaran", JSON.stringify(k));
+    document.getElementById("barangKeluar").value = "";
+    document.getElementById("nominalKeluar").value = "";
+}
+
+function editData(tipe, index) {
+    if (currentUser.toLowerCase() !== "deni") return alert("Akses ditolak! Hanya Bos (Deni) yang bisa mengedit data.");
+    if (tipe === 'p') {
+        editIndexP = index;
+        document.getElementById("tanggalPendapatan").value = p[index].tanggal;
+        document.getElementById("barang").value = p[index].barang;
+        document.getElementById("nominal").value = p[index].nominal;
+        document.getElementById('btnSimpanP').textContent = "Update Data";
+        showPage('pendapatan');
+    } else {
+        editIndexK = index;
+        document.getElementById("tanggalPengeluaran").value = k[index].tanggal;
+        document.getElementById("barangKeluar").value = k[index].barang;
+        document.getElementById("nominalKeluar").value = k[index].nominal;
+        document.getElementById('btnSimpanK').textContent = "Update Data";
+        showPage('pengeluaran');
+    }
+}
+
+function hapusData(tipe, index) {
+    if (currentUser.toLowerCase() !== "deni") return alert("Akses ditolak! Anda tidak punya izin untuk menghapus data.");
+    if (!confirm("Yakin ingin menghapus data ini?")) return;
+    if (tipe === 'p') {
+        p.splice(index, 1);
+        localStorage.setItem("dataPendapatan", JSON.stringify(p));
+    } else {
+        k.splice(index, 1);
+        localStorage.setItem("dataPengeluaran", JSON.stringify(k));
+    }
+    renderTable();
+}
+
+function renderTable() {
+    var tbP = document.getElementById("tbP");
+    if(tbP) tbP.innerHTML = "";
+    var noP = 1;
+    var bulanP = document.getElementById("filterHistoriP").value;
+    
+    p.forEach(function(d, index) {
+        if (!bulanP || String(d.tanggal).substring(0, 7) === bulanP) {
+            var actionBtns = (currentUser.toLowerCase() === "deni") ? '<button class="btn-action btn-edit" onclick="editData(\'p\', '+index+')">Edit</button> <button class="btn-action btn-hapus" onclick="hapusData(\'p\', '+index+')">Hapus</button>' : '-';
+            
+            tbP.innerHTML += '<tr>' +
+                '<td>' + (noP++) + '</td>' +
+                '<td>' + escapeHTML(d.tanggal) + '</td>' +
+                '<td class="kolom-kecil" style="min-width: 150px;">' + escapeHTML(d.barang) + '</td>' +
+                '<td class="kolom-kecil">' + escapeHTML(d.pelanggan) + '</td>' +
+                '<td class="kolom-kecil">' + escapeHTML(d.telfon) + '</td>' +
+                '<td class="kolom-kecil">' + escapeHTML(d.alamat) + '</td>' +
+                '<td class="kolom-kecil">' + escapeHTML(d.ambil) + '</td>' +
+                '<td class="kolom-kecil">' + escapeHTML(d.kembali) + '</td>' +
+                '<td>Rp ' + fmt(d.nominal) + '</td>' +
+                '<td>' + actionBtns + '</td>' +
+                '</tr>';
+        }
+    });
+
+    var tbK = document.getElementById("tbK");
+    if(tbK) tbK.innerHTML = "";
+    var noK = 1;
+    var bulanK = document.getElementById("filterHistoriK").value;
+    
+    k.forEach(function(d, index) {
+        if (!bulanK || String(d.tanggal).substring(0, 7) === bulanK) {
+            var actionBtns = (currentUser.toLowerCase() === "deni") ? '<button class="btn-action btn-edit" onclick="editData(\'k\', '+index+')">Edit</button> <button class="btn-action btn-hapus" onclick="hapusData(\'k\', '+index+')">Hapus</button>' : '-';
+            tbK.innerHTML += '<tr><td>'+(noK++)+'</td><td>'+escapeHTML(d.tanggal)+'</td><td>'+escapeHTML(d.barang)+'</td><td>Rp '+fmt(d.nominal)+'</td><td>'+actionBtns+'</td></tr>';
+        }
+    });
+}
+
+function renderSaldo() {
+    var bulan = document.getElementById("filterBulan").value;
+    var tp = 0, tk = 0;
+    p.forEach(function(d) { if (!bulan || String(d.tanggal).substring(0, 7) === bulan) tp += Number(d.nominal || 0); });
+    k.forEach(function(d) { if (!bulan || String(d.tanggal).substring(0, 7) === bulan) tk += Number(d.nominal || 0); });
+    document.getElementById("sumPendapatan").textContent = fmt(tp);
+    document.getElementById("sumPengeluaran").textContent = fmt(tk);
+    document.getElementById("saldo").textContent = fmt(tp - tk);
+}
+
+function hitungInvoice() {
+    var harga = Number(document.getElementById('invHarga').value) || 0;
+    var durasi = Number(document.getElementById('invDurasi').value) || 0;
+    var total = harga * durasi;
+    document.getElementById('invTotal').value = "Rp " + fmt(total);
+}
+
+function cetakInvoice() {
+    var pel = document.getElementById('invPelanggan').value || "-";
+    var tgl = document.getElementById('invTanggal').value || "-";
+    var brg = document.getElementById('invBarang').value || "-";
+    var h = Number(document.getElementById('invHarga').value) || 0;
+    var d = Number(document.getElementById('invDurasi').value) || 0;
+    var total = h * d;
+    
+    var telfon = document.getElementById('invTelfon').value || "-";
+    var alamat = document.getElementById('invAlamat').value || "-";
+    var ambil = document.getElementById('invAmbil').value || "-";
+    var kembali = document.getElementById('invKembali').value || "-";
+    var ket = document.getElementById('invKet').value || "";
+
+    if (!brg || total <= 0) {
+        return alert("Mohon isi Nama Barang dan Harga Sewa terlebih dahulu!");
+    }
+
+    document.getElementById('pPelanggan').textContent = pel;
+    document.getElementById('pTanggal').textContent = tgl;
+    document.getElementById('pBarang').textContent = brg;
+    document.getElementById('pHarga').textContent = "Rp " + fmt(h);
+    document.getElementById('pDurasi').textContent = d + " Hari";
+    document.getElementById('pTotal').textContent = "Rp " + fmt(total);
+    document.getElementById('pGrandTotal').textContent = fmt(total);
+    document.getElementById('pTelfon').textContent = telfon;
+    document.getElementById('pAlamat').textContent = alamat;
+    document.getElementById('pAmbil').textContent = ambil.replace("T", " ");
+    document.getElementById('pKembali').textContent = kembali.replace("T", " ");
+    document.getElementById('pKeterangan').textContent = ket ? "*Catatan Tambahan: " + ket : "";
+
+    var objPendapatan = { 
+        tanggal: tgl, 
+        barang: "Invoice: " + brg, 
+        nominal: total,
+        isInvoice: true,               
+        pelanggan: pel,
+        telfon: telfon,
+        alamat: alamat,
+        ambil: ambil.replace("T", " "),
+        kembali: kembali.replace("T", " ")
+    };
+    p.push(objPendapatan);
+    localStorage.setItem("dataPendapatan", JSON.stringify(p));
+
+    window.print();
+}
+
+function exportExcel(tipe) {
+    let dataArr = tipe === 'p' ? p : k;
+    let bulan = tipe === 'p' ? document.getElementById("filterHistoriP").value : document.getElementById("filterHistoriK").value;
+    let csv = "";
+
+    if (tipe === 'p') {
+        csv += "No,Tanggal,Barang / Keterangan,Nama Penyewa,No HP,Alamat,Waktu Ambil,Waktu Kembali,Nominal (Rp)\n";
+    } else {
+        csv += "No,Tanggal,Keterangan,Nominal (Rp)\n";
+    }
+
+    let sanitizeFormula = function(text) {
+        let val = String(text || "-");
+        if (/^[=\+\-@]/.test(val)) {
+            val = "'" + val; 
+        }
+        return val.replace(/"/g, '""');
+    };
+
+    let no = 1;
+    dataArr.forEach(d => {
+        if (!bulan || String(d.tanggal).substring(0, 7) === bulan) {
+            let row = [];
+            row.push(no++);
+            row.push(d.tanggal || "");
+            row.push('"' + sanitizeFormula(d.barang) + '"');
+            
+            if (tipe === 'p') {
+                row.push('"' + sanitizeFormula(d.pelanggan) + '"');
+                row.push('"' + sanitizeFormula(d.telfon) + '"');
+                row.push('"' + sanitizeFormula(d.alamat) + '"');
+                row.push('"' + sanitizeFormula(d.ambil) + '"');
+                row.push('"' + sanitizeFormula(d.kembali) + '"');
+            }
+            row.push(d.nominal || 0);
+            csv += row.join(",") + "\n";
+        }
+    });
+
+    let blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    let url = URL.createObjectURL(blob);
+    let link = document.createElement("a");
+    link.setAttribute("href", url);
+    
+    let namaFile = tipe === 'p' ? "Laporan_Pendapatan" : "Laporan_Pengeluaran";
+    if (bulan) namaFile += "_" + bulan;
+    link.setAttribute("download", namaFile + ".csv");
+    
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
 </script>
-
 </body>
 </html>
